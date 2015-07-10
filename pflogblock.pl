@@ -325,7 +325,7 @@ MAIN:
    # make sure we can find pfctl
    if (!defined($_PFCTL_CMD) || defined($_PFCTL_CMD) && length($_PFCTL_CMD) <= 0)
    {
-      syslog(LOG_ERR, 'Unabled to locate pfctl');
+      syslog(LOG_ERR, 'Unable to locate pfctl');
       exit -1; 
    }
 
