@@ -1,0 +1,7 @@
+# Add this to root's crontab to ensure the pflogblock.pl script gets to run
+#its management tasks... 
+
+# On reboot reload the last pflogblock_blacklist that we had recorded 
+@reboot		/usr/local/sbin/pflogblock.pl -l /var/db/pflogblock_blacklist
+# Every so often expire the blacklist (using the default time in the script)
+0 */1 * * *	/usr/local/sbin/pflogblock.pl -x -1
