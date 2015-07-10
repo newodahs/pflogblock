@@ -16,13 +16,13 @@ but that is not my primary goal at the moment.  This is simply a small, side pro
 To get going with pflogblock, I recommend the following basic configuration items:
  * The following dependencies are required for pflogblock to run:
   * A compatible syslog that is able to pipe messages to external applications
-   * The default FreeBSD syslog is capable of this
+    * The default FreeBSD syslog is capable of this
   * A compatible firewall
-   * Currently, only pf is supported - pflogblock uses pfctl directly
+    * Currently, only pf is supported - pflogblock uses pfctl directly
   * perl 5.18 or above
-   * Currently building/testing with perl 5.20
+    * Currently building/testing with perl 5.20
   * perl File::Which (CPAN)
-   * Can be found in FreeBSD ports: sysutils/p5-File-Which
+    * Can be found in FreeBSD ports: sysutils/p5-File-Which
  * Place pflogblock.pl in a location where it will be run by root
   * Ownership should be: root:wheel
   * Permissions should be: -rwxrx---- (750)
@@ -31,7 +31,7 @@ To get going with pflogblock, I recommend the following basic configuration item
  * Setup whitelist table and blacklist regex configuration files
   * Example blacklist regex configuration can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/usr/local/etc/pflogblock_regex.conf
   * Example whitelist table can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/var/db/pflogblock_whitelist
-   * The whitelist is very important - you don't want to lock yourself out on accident!
+    * The whitelist is very important - you don't want to lock yourself out on accident!
  * Setup syslog to pipe log messages from desired log file for processing
   * Example assumes the auth.log (which is likely the most appropriate)
   * Example syslog configuration lines can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/etc/syslog.conf
