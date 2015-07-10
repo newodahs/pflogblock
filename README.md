@@ -14,6 +14,15 @@ but that is not my primary goal at the moment.  This is simply a small, side pro
 # Basic Setup
 
 To get going with pflogblock, I recommend the following basic configuration items:
+ * The following dependencies are required for pflogblock to run:
+  * A compatible syslog that is able to pipe messages to external applications
+   * The default FreeBSD syslog is capable of this
+  * A compatible firewall
+   * Currently, only pf is supported - pflogblock uses pfctl directly
+  * perl 5.18 or above
+   * Currently building/testing with perl 5.20
+  * perl File::Which (CPAN)
+   * Can be found in FreeBSD ports: sysutils/p5-File-Which
  * Place pflogblock.pl in a location where it will be run by root
   * Ownership should be: root:wheel
   * Permissions should be: -rwxrx---- (750)
