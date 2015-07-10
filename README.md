@@ -2,14 +2,11 @@
 
 As many of have experienced, having a server exposed to the internet can be at least annoying and sometimes just plain dangerous if not properly secured.
 
-This project started off as a way to dynamically block people who were trying to brute-force ssh on my server by way
-of syslog passing auth events to it and, based on configurable regexs, pull out offending IPs and block them for a 
-configurable amount of time.
+This project started off a couple of years ago as a way to dynamically block people who were trying to brute-force ssh on my server by way of syslog passing auth events to it and, based on configurable regexs, pull out offending IPs and block them for a configurable amount of time.
 
 Two last things to note:
  1. I'm a C/C++ developer writing perl so my perl looks like C code...
- 2. As I'm mostly a FreeBSD guy, I've written this script with that in mind.  It may be portable to Linux or another system
-but that is not my primary goal at the moment.  This is simply a small, side project I use as an ocassional distraction.
+ 2. As I'm mostly a FreeBSD guy, I've written this script with that in mind.  It may be portable to Linux or another system but that is not my primary goal at the moment.  This is simply a small, side project I use as an ocassional distraction.
 
 # Basic Setup
 
@@ -50,7 +47,7 @@ first capture group in the regex.  Try to keep your captures to a single one for
 # Release Notes
 
 July-2015
-First revision of this script.  Base functionality is as follows:
+First public revision of this script.  Base functionality is as follows:
  * Accepts piped log messages from syslog for processing
   * See: https://www.freebsd.org/cgi/man.cgi?query=syslog.conf(5) for more information
  * Setup to be syslog smart - once run by syslog it will stay active while the pipe is open
