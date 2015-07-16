@@ -162,7 +162,7 @@ sub loadXList
          if (substr($line, 0, 1) ne '#')
          {
             push(@ret, $line);
-            syslog(LOG_DEBUG, "Found $line in $filename list");
+            syslog(LOG_DEBUG, "Found: $line in $filename list");
          }
          else
          {
@@ -179,26 +179,26 @@ sub processAuthLog
 {
    my @ret;
    my $line = $_[0];
-   my @regexList = $_[1];
+   my $regexList = $_[1];
    
    # check the line against the "bad" log messages
-   foreach my $secRegex (@regexList)
+   foreach my $secRegex (@{$regexList})
    {
       if ($line =~ /$secRegex/)
       {
          # validate the returned address (translate it if it's DNS)
          my $foundAddr = $1;
          chomp($foundAddr);
-         syslog(LOG_DEBUG, "Found $foundAddr in processed auth log line");
+         syslog(LOG_DEBUG, "Found $foundAddr in processed log line");
 
          my ($addrErr, @addrInfoList) = getaddrinfo($foundAddr, '', {socktype => SOCK_RAW});
-         if ($addrErr) { die("Unable to get address info: $addrErr"); } 
+         if ($addrErr) { die("Unable to get address info for $foundAddr: $addrErr"); } 
          while(my $addrInfo = shift(@addrInfoList)) 
          {
             my ($nameErr, $ip) = getnameinfo($addrInfo->{addr}, NI_NUMERICHOST, NIx_NOSERV);
             if ($nameErr)
             {
-               syslog(LOG_ERR, "Unable to resolve an address for $foundAddr");
+               syslog(LOG_ERR, "Unable to resolve an address for $foundAddr: $nameErr");
                next;
             }
             push(@ret, $ip);
@@ -385,7 +385,7 @@ MAIN:
                      if ($line && "$line" ne '')
                      {
                         my @addrList;
-                        eval { @addrList = &processAuthLog($line, @secRegexList) };
+                        eval { @addrList = &processAuthLog($line, \@secRegexList) };
                         if ($@) { syslog(LOG_ERR, "Unable to process auth.log message: $@"); next; }
                         foreach my $addr (@addrList)
                         {

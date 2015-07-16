@@ -25,10 +25,13 @@ To get going with pflogblock, I recommend the following basic configuration item
   * Permissions should be: -rwxrx---- (750)
  * Setup cronjobs to automatically load the last known blacklist and expire IPs off of the blacklist
   * Example cronjobs for this can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/root.crontab
+  * Keep in mind you may need to set the PATH environment variable in your crontab, otherwise pflogblock may have trouble finding pfctl
  * Setup whitelist table and blacklist regex configuration files
   * Example blacklist regex configuration can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/usr/local/etc/pflogblock_regex.conf
   * Example whitelist table can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/var/db/pflogblock_whitelist
     * The whitelist is very important - you don't want to lock yourself out on accident!
+ * Setup pf with a pflogblock table -- this is the table pflogblock will automatically update with what it believes to be malicious addresses
+  * Example pf configuration lines can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/etc/pf.conf
  * Setup syslog to pipe log messages from desired log file for processing
   * Example assumes the auth.log (which is likely the most appropriate)
   * Example syslog configuration lines can be found in this source tree: https://github.com/newodahs/pflogblock/blob/master/fbsd/etc/syslog.conf
