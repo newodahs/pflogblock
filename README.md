@@ -1,6 +1,6 @@
 # pflogblock
 
-As many of have experienced, having a server exposed to the internet can be at least annoying and sometimes just plain dangerous if not properly secured.
+As many of you have experienced, having a server exposed to the internet can be at least annoying and sometimes just plain dangerous if not properly secured.
 
 This project started off a couple of years ago as a way to dynamically block people who were trying to brute-force ssh on my server by way of syslog passing auth events to it and, based on configurable regexs, pull out offending IPs and block them for a configurable amount of time.
 
